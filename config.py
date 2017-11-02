@@ -15,7 +15,7 @@ MAIN_MENU = ('Наши бренды', 'Органическая косметик
 
 PRODUCT_MENU = ('Описание', 'Состав', 'Применение', 'Изготовитель')
 
-WEBHOOK_HOST = '<ip/host where the bot is running>'
+WEBHOOK_HOST = 'https://shefflera.herokuapp.com'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
 WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
 
