@@ -4,11 +4,12 @@ import flask
 import logging
 import sqlite3
 import telebot
+import requests
 
 from config import (
     API_TOKEN, DB, MAIN_MENU, CONTACTS_MAPPING,
-    PRODUCT_MENU, WEBHOOK_PORT, WEBHOOK_LISTEN,
-    WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV, WEBHOOK_URL_BASE, WEBHOOK_URL_PATH
+    PRODUCT_MENU, WEBHOOK_REQ, WEBHOOK_HOST, WEBHOOK_PORT, WEBHOOK_LISTEN,
+    WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV, WEBHOOK_URL_PATH
 )
 from telebot import types
 
@@ -219,9 +220,15 @@ def return_products(products, chat_id, product_type):
 bot.remove_webhook()
 
 # Set webhook
-bot.set_webhook(
-    url=WEBHOOK_URL_BASE+WEBHOOK_URL_PATH,
-    certificate=open(WEBHOOK_SSL_CERT, 'r')
+certificate = open(WEBHOOK_SSL_CERT, 'r')
+session_requests = requests.session()
+set_webhook = session_requests.post(
+    WEBHOOK_REQ.format(
+        token=API_TOKEN,
+        host=WEBHOOK_HOST,
+        port=WEBHOOK_PORT,
+        certificate=certificate
+    )
 )
 
 # Start flask server

@@ -15,7 +15,7 @@ MAIN_MENU = ('Наши бренды', 'Органическая косметик
 
 PRODUCT_MENU = ('Описание', 'Состав', 'Применение', 'Изготовитель')
 
-WEBHOOK_HOST = 'https://shefflera.herokuapp.com'
+WEBHOOK_HOST = 'https://immense-spire-21972.herokuapp.com'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
 WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
 
@@ -24,3 +24,5 @@ WEBHOOK_SSL_PRIV = './bot/webhook_pkey.pem'  # Path to the ssl private key
 
 WEBHOOK_URL_BASE = "https://%s:%s" % (WEBHOOK_HOST, WEBHOOK_PORT)
 WEBHOOK_URL_PATH = "/%s/" % (API_TOKEN)
+
+WEBHOOK_REQ = 'https://api.telegram.org/bot{token}/setWebhook?url={host}:{port}/{token}/&certificate={certificate}'
