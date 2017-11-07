@@ -2,7 +2,7 @@
 API_TOKEN = "465633546:AAGQNVuoqn5gouyOieqCj1yQbo2riAyebSM"
 
 # Path to bd.
-DB = "bot/Shefflera.db"
+DB = "db_and_certs/Shefflera.db"
 
 CONTACTS_MAPPING = {
     'VK': 'Мы в VK: https://vk.com/shefflera_organic',
@@ -15,12 +15,12 @@ MAIN_MENU = ('Наши бренды', 'Органическая косметик
 
 PRODUCT_MENU = ('Описание', 'Состав', 'Применение', 'Изготовитель')
 
-WEBHOOK_HOST = 'https://immense-spire-21972.herokuapp.com'
+WEBHOOK_HOST = 'https://104.131.96.14/'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
-WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
+WEBHOOK_LISTEN = '127.0.0.1'  # In some VPS you may need to put here the IP addr
 
-WEBHOOK_SSL_CERT = './bot/webhook_cert.pem'  # Path to the ssl certificate
-WEBHOOK_SSL_PRIV = './bot/webhook_pkey.pem'  # Path to the ssl private key
+WEBHOOK_SSL_CERT = './db_and_certs/webhook_cert.pem'  # Path to the ssl certificate
+WEBHOOK_SSL_PRIV = './db_and_certs/webhook_pkey.pem'  # Path to the ssl private key
 
 WEBHOOK_URL_BASE = "https://%s:%s" % (WEBHOOK_HOST, WEBHOOK_PORT)
 WEBHOOK_URL_PATH = "/%s/" % (API_TOKEN)

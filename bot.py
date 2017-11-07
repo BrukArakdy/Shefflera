@@ -24,7 +24,7 @@ app = flask.Flask(__name__)
 # Empty webserver index, return nothing, just http 200
 @app.route('/', methods=['GET', 'HEAD'])
 def index():
-    return ''
+    return 'The bot is running!'
 
 
 # Process webhook calls
@@ -229,12 +229,4 @@ set_webhook = session_requests.post(
         port=WEBHOOK_PORT,
         certificate=certificate
     )
-)
-
-# Start flask server
-app.run(
-    host=WEBHOOK_LISTEN,
-    port=WEBHOOK_PORT,
-    ssl_context=(WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV),
-    debug=True
 )
