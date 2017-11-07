@@ -2,7 +2,7 @@
 from bot import app
 from config import WEBHOOK_LISTEN, WEBHOOK_PORT, WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV
 
-if __name__ == "__main":
+if __name__ == "__main__":
     # Start flask server
     app.run(
         host=WEBHOOK_LISTEN,
