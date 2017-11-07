@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Token to connect the bot.
 API_TOKEN = "465633546:AAGQNVuoqn5gouyOieqCj1yQbo2riAyebSM"
 
