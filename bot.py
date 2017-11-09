@@ -3,12 +3,10 @@ import flask
 import logging
 import sqlite3
 import telebot
-import requests
 
 from config import (
-    API_TOKEN, DB, MAIN_MENU, CONTACTS_MAPPING,
-    PRODUCT_MENU, WEBHOOK_REQ, WEBHOOK_HOST, WEBHOOK_PORT, WEBHOOK_LISTEN,
-    WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV, WEBHOOK_URL_PATH
+    API_TOKEN, DB, MAIN_MENU, CONTACTS_MAPPING, PRODUCT_MENU,
+    WEBHOOK_SSL_CERT, WEBHOOK_URL_PATH, WEBHOOK_URL_BASE
 )
 from telebot import types
 
@@ -18,9 +16,9 @@ telebot.logger.setLevel(logging.INFO)
 bot = telebot.TeleBot(API_TOKEN)
 
 app = flask.Flask(__name__)
+app.debug = True
 
 
-# Empty webserver index, return nothing, just http 200
 @app.route('/', methods=['GET', 'HEAD'])
 def index():
     return 'The bot is running!'
@@ -33,7 +31,7 @@ def webhook():
         json_string = flask.request.get_data()
         update = telebot.types.Update.de_json(json_string)
         bot.process_new_updates([update])
-        return ''
+        return 'JSON has been received.'
     else:
         flask.abort(403)
 
@@ -219,13 +217,7 @@ def return_products(products, chat_id, product_type):
 bot.remove_webhook()
 
 # Set webhook
-certificate = open(WEBHOOK_SSL_CERT, 'r')
-session_requests = requests.session()
-set_webhook = session_requests.post(
-    WEBHOOK_REQ.format(
-        token=API_TOKEN,
-        host=WEBHOOK_HOST,
-        port=WEBHOOK_PORT,
-        certificate=certificate
-    )
+bot.set_webhook(
+    url=WEBHOOK_URL_BASE+WEBHOOK_URL_PATH,
+    certificate=open(WEBHOOK_SSL_CERT, 'r')
 )
